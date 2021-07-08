@@ -64,4 +64,10 @@ export class JogadoresService {
     }
     return jogador;
   }
+
+  async deletarJogador(email: string) {
+    const jogador = await this.filtro(email);
+    (this.jogadores).splice(this.jogadores.indexOf(jogador), 1);
+    return jogador;
+  }
 }
