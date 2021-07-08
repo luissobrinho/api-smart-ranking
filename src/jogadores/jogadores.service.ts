@@ -6,12 +6,13 @@ import { v4 as uuid } from 'uuid';
 @Injectable()
 export class JogadoresService {
   private readonly logger = new Logger(JogadoresService.name);
-
+  private jogadores: Jogador[] = [];
   async criarAtualizarJogador(
     criarJogadorDto: CriarJogadorDto,
   ): Promise<Jogador> {
     const jogador = await JogadoresService.criar(criarJogadorDto);
     this.logger.log(`criarJogadorDto: ${JSON.stringify(jogador)}`);
+    this.jogadores.push(jogador);
     return jogador;
   }
 
@@ -28,5 +29,9 @@ export class JogadoresService {
       ranking: 'A',
       urlFotoJogador: '',
     };
+  }
+
+  async consultarTodosJogadores(): Promise<Jogador[]> {
+    return this.jogadores;
   }
 }
