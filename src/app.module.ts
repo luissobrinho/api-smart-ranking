@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common';
 import { JogadoresModule } from './jogadores/jogadores.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { CategoriasModule } from './categorias/categorias.module';
+import { LoggerState } from 'mongodb';
+import { DesafiosModule } from './desafios/desafios.module';
 
 @Module({
   imports: [
@@ -11,9 +14,11 @@ import { MongooseModule } from '@nestjs/mongoose';
         useNewUrlParser: true,
         useCreateIndex: true,
         useUnifiedTopology: true,
-        useFindAndModify: true,
+        useFindAndModify: false,
       },
     ),
+    CategoriasModule,
+    DesafiosModule,
   ],
   controllers: [],
   providers: [],
